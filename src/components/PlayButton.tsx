@@ -2,7 +2,15 @@ import * as React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { StyleSheet } from 'src/styles';
 
-export const PlayButton = ({ onPress, title, animating, stopAnimation }) => {
+export const PlayButton = ({
+  onPress,
+  animating,
+  stopAnimation,
+}: {
+  onPress: () => void;
+  animating: boolean;
+  stopAnimation: () => void;
+}) => {
   const handlePress = () => {
     if (animating) {
       stopAnimation();

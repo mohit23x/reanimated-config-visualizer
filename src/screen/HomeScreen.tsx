@@ -1,46 +1,20 @@
 import * as React from 'react';
 import {
-  Modal,
-  View,
-  Text,
-  TextInput,
-  ScrollView,
-  Button,
-  Alert,
-} from 'react-native';
-import { StyleSheet, useTheme } from 'src/styles';
-import Animated, {
   cancelAnimation,
   runOnJS,
-  useAnimatedStyle,
   useSharedValue,
   withSpring,
-  Easing,
-  useAnimatedRef,
-  useDerivedValue,
-  useAnimatedProps,
 } from 'react-native-reanimated';
 import { InputSection } from 'src/components/InputSection';
 import { Container, Divider } from 'src/components/ui';
 import { OutputSection } from 'src/components/OutputSection';
-import { PlayButton } from 'src/components';
-import { ReText } from 'react-native-redash';
 import type { ActionTypes, InitStateType } from 'src/types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const TYPES = [1, 2, 3, 4, 5, 6, 7, 8];
-type Props = {};
-
-const DEFAULT_CONFIG = {
-  damping: 12,
-  mass: 1,
-  stiffness: 150,
-  velocity: 0,
-};
+import { ConfigType, DEFAULT_CONFIG } from 'src/constants';
+import { useTheme } from 'src/styles';
 
 export const initState = DEFAULT_CONFIG;
 
-const reducer = (state: typeof initState, action: ActionTypes) => {
+const reducer = (state: ConfigType, action: ActionTypes) => {
   switch (action.type) {
     case 'SET':
       return { ...state, ...action.payload };
@@ -49,12 +23,12 @@ const reducer = (state: typeof initState, action: ActionTypes) => {
   }
 };
 
-export const HomeScreen = ({}: Props) => {
+export const HomeScreen = () => {
   const x = useSharedValue(0);
   const [state, dispatch] = React.useReducer(reducer, initState);
   const [animating, setAnimating] = React.useState(false);
-  const [show, setShow] = React.useState(false);
   useTheme();
+
   const handleChange = (payload: Partial<InitStateType>) => {
     dispatch({ type: 'SET', payload });
   };

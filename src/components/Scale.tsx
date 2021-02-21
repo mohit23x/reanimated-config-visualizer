@@ -2,8 +2,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { StyleSheet } from 'src/styles';
+import { AnimationCompProps } from 'src/types';
 
-export const Scale = ({ x, backgroundColor }) => {
+export const Scale = ({ x, backgroundColor }: AnimationCompProps) => {
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [{ scale: x.value }],

@@ -2,7 +2,15 @@ import * as React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { StyleSheet } from 'src/styles';
 
-export const Option = ({ option, toggleAnimation, active }) => {
+export const Option = ({
+  option,
+  toggleAnimation,
+  active,
+}: {
+  option: any;
+  toggleAnimation: (a: any) => void;
+  active: boolean;
+}) => {
   const Icon = option.icon;
 
   const activeColor =

@@ -3,27 +3,12 @@ import { Section } from './ui';
 import { StyleSheet } from 'src/styles';
 import { Actions } from './Actions';
 import { Slider } from './Slider';
-import { Select } from './Select';
-import { Button, View, Modal, Text } from 'react-native';
 import { SettingModal } from './SettingModal';
 import { ActionTypes } from 'src/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ConfigType, DEFAULT_MAX_LIMIT, STEP } from 'src/constants';
 
-const DEFAULT_MAX_LIMIT = {
-  damping: 14,
-  mass: 5,
-  stiffness: 300,
-  velocity: 100,
-};
-
-const STEP = {
-  damping: 0.5,
-  mass: 0.1,
-  stiffness: 1,
-  velocity: 1,
-};
-
-const persistConfig = (payload) => {
+const persistConfig = (payload: ConfigType) => {
   AsyncStorage.setItem('config', JSON.stringify(payload));
 };
 
@@ -47,6 +32,12 @@ export const InputSection = ({
   handleChange,
   animating,
   stopAnimation,
+}: {
+  onPress: () => void;
+  state: ConfigType;
+  handleChange: () => void;
+  animating: boolean;
+  stopAnimation: () => void;
 }) => {
   const [show, setShow] = React.useState(false);
   const [LIMIT, dispatch] = React.useReducer(reducer, initState);
@@ -71,7 +62,7 @@ export const InputSection = ({
     persistConfig(DEFAULT_MAX_LIMIT);
   };
 
-  const setConfig = (obj) => {
+  const setConfig = (obj: Partial<ConfigType>) => {
     const payload = Object.assign({}, LIMIT, obj);
     dispatch({ type: 'SET', payload });
   };
@@ -131,14 +122,14 @@ export const InputSection = ({
   );
 };
 
-const s = StyleSheet.create((theme, constants) => ({
+const s = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
   },
   section: {
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
-}));
+});

@@ -1,15 +1,5 @@
 import * as React from 'react';
-import {
-  View,
-  Image,
-  Modal,
-  Switch,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Linking,
-  ScrollView,
-} from 'react-native';
+import { View, Text, TouchableOpacity, Linking } from 'react-native';
 import { StyleSheet } from 'src/styles';
 
 const ASSETS = [{ title: 'FlatIcon', url: 'https://www.flaticon.com/' }];
@@ -26,6 +16,10 @@ const TECH = [
     url: 'https://necolas.github.io/react-native-web/',
   },
   {
+    title: 'React Native Redash',
+    url: 'https://github.com/wcandillon/react-native-redash',
+  },
+  {
     title: '@react-native-community/slider',
     url: 'https://github.com/callstack/react-native-slider',
   },
@@ -39,12 +33,13 @@ const TECH = [
   },
   {
     title: 'React Native Sugar Style',
-    url: 'https://www.npmjs.com/package/react-native-sugar-style',
+    url: 'https://github.com/mohit23x/react-native-sugar-style',
   },
 ];
-const Link = ({ title, url }) => {
+
+const Link = ({ title, url }: { title: string; url: string }) => {
   const onPress = () => {
-    Linking.canOpenURL(url).then((supported) => {
+    Linking.canOpenURL(url).then(() => {
       return Linking.openURL(url);
     });
   };

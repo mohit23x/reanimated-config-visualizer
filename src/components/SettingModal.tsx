@@ -1,19 +1,8 @@
 import * as React from 'react';
-import {
-  View,
-  Image,
-  Modal,
-  Switch,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Linking,
-  ScrollView,
-} from 'react-native';
+import { View, Image, Modal, Switch, Text, ScrollView } from 'react-native';
 import { darkTheme, lightTheme, StyleSheet } from 'src/styles';
 import { Attribution } from './Attribution';
 import { ConfigureLimit } from './ConfigureLimit';
-import { PlayButton } from './PlayButton';
 import { Button, Divider } from './ui';
 
 const DarkModeSetting = ({ isLight, toggleSwitch }) => {

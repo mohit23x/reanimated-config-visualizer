@@ -18,7 +18,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-reanimated": "2.0.0-rc.0",
     "react-native-redash": "^16.0.8",
-    "react-native-sugar-style": "^0.1.6",
+    "react-native-sugar-style": "^0.1.8",
     "react-native-svg": "^12.1.0",
     "react-native-web": "^0.15.0"
   },

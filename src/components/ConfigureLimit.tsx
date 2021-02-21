@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View, Switch, Text, TouchableOpacity } from 'react-native';
+import { ConfigType, LimitType } from 'src/constants';
 import { StyleSheet } from 'src/styles';
 import { Button } from './ui';
 
@@ -8,6 +9,11 @@ export const ConfigureLimit = ({
   setConfig,
   handleSave,
   handleReset,
+}: {
+  limit: LimitType;
+  setConfig: (a: any) => void;
+  handleSave: () => void;
+  handleReset: () => void;
 }) => {
   return (
     <View>
@@ -36,7 +42,15 @@ export const ConfigureLimit = ({
   );
 };
 
-const InputCounter = ({ field, setConfig, value }) => {
+const InputCounter = ({
+  field,
+  setConfig,
+  value,
+}: {
+  field: keyof LimitType;
+  setConfig: (a: any) => void;
+  value: number;
+}) => {
   const increase = () => {
     setConfig({ [field]: value + 2 });
   };
@@ -79,7 +93,7 @@ const s = StyleSheet.create((theme) => ({
   },
   btnText: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: theme.font.m,
     color: theme.text,
   },
   counterValue: {

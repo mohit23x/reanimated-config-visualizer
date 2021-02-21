@@ -2,8 +2,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { StyleSheet } from 'src/styles';
+import { AnimationCompProps } from 'src/types';
 
-export const Movement = ({ x, backgroundColor }) => {
+export const Movement = ({ x, backgroundColor }: AnimationCompProps) => {
   const animatedStyles = useAnimatedStyle(() => {
     return {
       transform: [{ translateY: x.value * 100 }],

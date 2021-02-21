@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { StyleSheet } from 'src/styles';
 import { PlayButton } from './PlayButton';
 import SettingIcon from 'src/assets/Setting';
@@ -9,15 +9,14 @@ export const Actions = ({
   animating,
   stopAnimation,
   handleSetting,
+}: {
+  onPress: () => void;
+  animating: boolean;
+  stopAnimation: () => void;
+  handleSetting: () => void;
 }) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginHorizontal: 20,
-      }}
-    >
+    <View style={{ flexDirection: 'row' }}>
       <View>
         <TouchableOpacity
           onPress={handleSetting}
@@ -42,5 +41,3 @@ export const Actions = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create((theme) => ({}));

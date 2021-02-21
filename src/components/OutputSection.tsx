@@ -84,7 +84,7 @@ export const OutputSection = ({
   );
 };
 
-const s = StyleSheet.create((theme, constants) => ({
+const s = StyleSheet.create((theme) => ({
   container: {
     flexDirection: ['row', 'column'],
     flex: 1,

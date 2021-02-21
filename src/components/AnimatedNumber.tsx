@@ -13,7 +13,7 @@ const ReTextInput = Animated.createAnimatedComponent(TextInput);
 
 type Props = { x: Animated.SharedValue<number> };
 
-const WebText = ({ x }) => {
+const WebText = ({ x }: Props) => {
   const inputAnimatedRef = useAnimatedRef();
 
   useDerivedValue(() => {
@@ -22,6 +22,7 @@ const WebText = ({ x }) => {
         text: (Math.floor(x.value * FIXED) / FIXED).toString(),
       });
     }
+    return 0;
   });
 
   return (

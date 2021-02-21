@@ -1,0 +1,25 @@
+{
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "lang": "en",
+  "name": "reanimated-config-visualizer",
+  "short_name": "reanimated-config-visualizer",
+  "start_url": "/?utm_source=web_app_manifest",
+  "icons": [
+    {
+      "src": "\\reanimated-config-visualizer\\pwa\\chrome-icon\\chrome-icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "\\reanimated-config-visualizer\\pwa\\chrome-icon\\chrome-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "\\reanimated-config-visualizer\\pwa\\chrome-icon\\chrome-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -10,23 +10,38 @@ export const PlayButton = ({ onPress, title, animating, stopAnimation }) => {
       onPress();
     }
   };
+
+  const activeOpacity = 0.6;
+
+  const opacity = animating ? activeOpacity : 1;
+
   return (
-    <TouchableOpacity onPress={handlePress}>
-      <View style={[s.container, {}]}>
-        <Text>{animating ? 'stop' : 'play'}</Text>
-      </View>
-    </TouchableOpacity>
+    <View style={{ flex: 1, flexDirection: 'row' }}>
+      <TouchableOpacity
+        activeOpacity={activeOpacity}
+        style={[s.container, { opacity }]}
+        onPress={handlePress}
+      >
+        <Text style={[s.text, { opacity }]}>{animating ? 'STOP' : 'PLAY'}</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
-const s = StyleSheet.create(() => ({
+const s = StyleSheet.create((theme) => ({
   container: {
-    height: 40,
-    width: 200,
-    borderRadius: 50,
+    height: 50,
+    minWidth: 220,
+    flex: 1,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'green',
+    backgroundColor: theme.primary,
     marginBottom: 10,
+    marginHorizontal: 5,
+  },
+  text: {
+    fontWeight: 'bold',
+    letterSpacing: 2,
   },
 }));

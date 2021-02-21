@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { View, Text, ScrollView, Button, Alert } from 'react-native';
+import {
+  Modal,
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  Button,
+  Alert,
+} from 'react-native';
 import { StyleSheet, useTheme } from 'src/styles';
 import Animated, {
   cancelAnimation,
@@ -8,25 +16,29 @@ import Animated, {
   useSharedValue,
   withSpring,
   Easing,
+  useAnimatedRef,
+  useDerivedValue,
+  useAnimatedProps,
 } from 'react-native-reanimated';
 import { InputSection } from 'src/components/InputSection';
-import { Container } from 'src/components/ui';
+import { Container, Divider } from 'src/components/ui';
 import { OutputSection } from 'src/components/OutputSection';
 import { PlayButton } from 'src/components';
+import { ReText } from 'react-native-redash';
 import type { ActionTypes, InitStateType } from 'src/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TYPES = [1, 2, 3, 4, 5, 6, 7, 8];
 type Props = {};
 
-export const initState = {
+const DEFAULT_CONFIG = {
   damping: 12,
   mass: 1,
   stiffness: 150,
-  overshootClamping: false,
-  restSpeedThreshold: 0.001,
-  restDisplacementThreshold: 0.001,
   velocity: 0,
 };
+
+export const initState = DEFAULT_CONFIG;
 
 const reducer = (state: typeof initState, action: ActionTypes) => {
   switch (action.type) {
@@ -37,42 +49,12 @@ const reducer = (state: typeof initState, action: ActionTypes) => {
   }
 };
 
-/*
-
-const config = {
-  damping: 28,
-  mass: 0.3,
-  stiffness: 188.296,
-  overshootClamping: false,
-  toValue: value,
-  restSpeedThreshold: 0.001,
-  restDisplacementThreshold: 0.001,
-};
-
-
-      damping: 12,
-      mass: 1,
-      stiffness: 150,
-      overshootClamping: false,
-      restSpeedThreshold: 0.001,
-      restDisplacementThreshold: 0.001,
-      toValue: snapPoint,
-
-
-  damping: 10,
-  mass: 1,
-  stiffness: 100,
-  velocity: 100,
-
-*/
-
 export const HomeScreen = ({}: Props) => {
   const x = useSharedValue(0);
-
   const [state, dispatch] = React.useReducer(reducer, initState);
   const [animating, setAnimating] = React.useState(false);
+  const [show, setShow] = React.useState(false);
   useTheme();
-
   const handleChange = (payload: Partial<InitStateType>) => {
     dispatch({ type: 'SET', payload });
   };
@@ -104,7 +86,7 @@ export const HomeScreen = ({}: Props) => {
           handleChange={handleChange}
           stopAnimation={stopAnimation}
         />
-        <OutputSection x={x} />
+        <OutputSection x={x} stopAnimation={stopAnimation} />
       </Container>
     </>
   );

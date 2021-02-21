@@ -1,81 +1,44 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import { Section } from './ui';
 import { StyleSheet } from 'src/styles';
-import Slider from '@react-native-community/slider';
-import { InitStateType } from 'src/types';
-import { PlayButton } from './PlayButton';
 import { Actions } from './Actions';
+import { Slider } from './Slider';
+import { Select } from './Select';
+import { Button, View, Modal, Text } from 'react-native';
+import { SettingModal } from './SettingModal';
+import { ActionTypes } from 'src/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const Config = ({
-  title,
-  value,
-  stateKey,
-  handleChange,
-  minimumValue = 0,
-  maximumValue = 100,
-  step = 1,
-}: {
-  title: string;
-  value: number | undefined;
-  stateKey: keyof InitStateType;
-  minimumValue?: number;
-  maximumValue?: number;
-  step?: number;
-  handleChange: (a: Partial<InitStateType>) => void;
-}) => {
-  const [val, setVal] = React.useState(value);
-
-  const handleFinalValue = () => {
-    handleChange({ [stateKey]: val });
-  };
-
-  const handleValueChange = (e: number) => {
-    const newVal = Math.floor(e * 100) / 100;
-    setVal(newVal);
-  };
-
-  return (
-    <View style={s.sliderContainer}>
-      <View style={s.textContainer}>
-        <Text style={s.label}>{title}:</Text>
-        <Text style={s.value}>{val}</Text>
-      </View>
-      <Slider
-        minimumValue={minimumValue}
-        maximumValue={maximumValue}
-        step={step}
-        value={value}
-        onValueChange={handleValueChange}
-        onSlidingComplete={handleFinalValue}
-        style={s.slider}
-      />
-    </View>
-  );
+const DEFAULT_MAX_LIMIT = {
+  damping: 14,
+  mass: 5,
+  stiffness: 300,
+  velocity: 100,
 };
 
-export const Select = ({
-  title,
-  data = [],
-  onValueChange,
-}: {
-  title?: string;
-  data?: Array<{ label: any; value: any }>;
-  onValueChange?: any;
-}) => {
-  return (
-    <>
-      <Text>{title}</Text>
-      <View style={s.pickerContainer}>
-        <Picker onValueChange={onValueChange} mode="dialog" style={s.picker}>
-          {data.map((d) => (
-            <Picker.Item label={d.label} value={d.value} />
-          ))}
-        </Picker>
-      </View>
-    </>
-  );
+const STEP = {
+  damping: 0.5,
+  mass: 0.1,
+  stiffness: 1,
+  velocity: 1,
+};
+
+const persistConfig = (payload) => {
+  AsyncStorage.setItem('config', JSON.stringify(payload));
+};
+
+export const initState = DEFAULT_MAX_LIMIT;
+
+const reducer = (
+  state: typeof initState = DEFAULT_MAX_LIMIT,
+  action: ActionTypes
+) => {
+  switch (action.type) {
+    case 'SET':
+      return { ...state, ...action.payload };
+    default:
+      return state;
+  }
 };
 
 export const InputSection = ({
@@ -85,82 +48,97 @@ export const InputSection = ({
   animating,
   stopAnimation,
 }) => {
+  const [show, setShow] = React.useState(false);
+  const [LIMIT, dispatch] = React.useReducer(reducer, initState);
+
+  const toggleModal = () => setShow((c) => !c);
+
+  const getConfig = async () => {
+    const data = await AsyncStorage.getItem('config');
+    if (data) {
+      dispatch({ type: 'SET', payload: JSON.parse(data) });
+    } else {
+      dispatch({ type: 'SET', payload: DEFAULT_MAX_LIMIT });
+    }
+  };
+
+  const handleSave = () => {
+    persistConfig(LIMIT);
+  };
+
+  const handleReset = () => {
+    setConfig(DEFAULT_MAX_LIMIT);
+    persistConfig(DEFAULT_MAX_LIMIT);
+  };
+
+  const setConfig = (obj) => {
+    const payload = Object.assign({}, LIMIT, obj);
+    dispatch({ type: 'SET', payload });
+  };
+
+  React.useEffect(() => {
+    getConfig();
+  }, []);
+
   return (
     <Section style={s.section}>
-      <Select title={'Preset'} />
-      <Config
-        title="Damping"
-        stateKey="damping"
+      {/* <Select title={'Preset'} /> */}
+
+      <Slider
+        stateKey={'damping'}
         value={state.damping}
         handleChange={handleChange}
-        maximumValue={10}
-        step={0.5}
+        maximumValue={LIMIT.damping}
+        step={STEP.damping}
       />
-      <Config
-        title="Mass"
-        stateKey="mass"
+      <Slider
+        stateKey={'mass'}
         value={state.mass}
         handleChange={handleChange}
-        maximumValue={5}
-        step={0.1}
+        maximumValue={LIMIT.mass}
+        step={STEP.mass}
       />
-      <Config
-        title="Stiffness"
-        stateKey="stiffness"
+      <Slider
+        stateKey={'stiffness'}
         value={state.stiffness}
         handleChange={handleChange}
-        maximumValue={300}
+        maximumValue={LIMIT.stiffness}
+        step={STEP.stiffness}
       />
-      <Config
-        title="Velocity"
-        stateKey="velocity"
+      <Slider
+        stateKey={'velocity'}
         value={state.velocity}
         handleChange={handleChange}
-        maximumValue={100}
+        maximumValue={LIMIT.velocity}
+        step={STEP.velocity}
       />
+
       <Actions
         animating={animating}
         onPress={onPress}
-        title="play"
         stopAnimation={stopAnimation}
+        handleSetting={toggleModal}
+      />
+      <SettingModal
+        toggleModal={toggleModal}
+        show={show}
+        limit={LIMIT}
+        setConfig={setConfig}
+        handleSave={handleSave}
+        handleReset={handleReset}
       />
     </Section>
   );
 };
 
 const s = StyleSheet.create((theme, constants) => ({
+  container: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
   section: {
     alignItems: 'center',
     justifyContent: 'space-evenly',
-  },
-  picker: {
-    backgroundColor: 'transparent',
-    borderWidth: 0,
-    height: '100%',
-    color: theme.text,
-  },
-  pickerContainer: {
-    height: 40,
-    width: '70%',
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: theme.text,
-    backgroundColor: theme.background,
-  },
-  sliderContainer: {
-    marginVertical: 5,
-    width: 300,
-  },
-  slider: {
-    width: '100%' || 300,
-    height: 30,
-  },
-  textContainer: {
-    flexDirection: 'row',
-  },
-  label: {},
-  value: {
-    marginLeft: 6,
-    fontWeight: 'bold',
   },
 }));

@@ -2,116 +2,83 @@ import * as React from 'react';
 import { View, Text, ScrollView, TransformsStyle } from 'react-native';
 import { Section } from './ui';
 import { StyleSheet } from 'src/styles';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
+import { AnimatedNumber } from 'src/components/AnimatedNumber';
+
+// components
+import { Rotate } from './Rotate';
+import { Scale } from './Scale';
+import { Movement } from './Movement';
 import { AnimationOptions } from './AnimationOptions';
 
 // assets
 import RotateIcon from 'src/assets/Rotate';
 import MoveIcon from 'src/assets/Move';
 import ScaleIcon from 'src/assets/Scale';
+import Animated from 'react-native-reanimated';
 
-export const Rotate = ({ x }) => {
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      transform: [{ rotate: `${x.value * 30}deg` }],
-    };
-  });
-
-  return (
-    <View style={s.playground}>
-      <View style={s.boxBorder}>
-        <Animated.View style={[s.box, animatedStyles]} />
-      </View>
-    </View>
-  );
-};
-
-export const Scale = ({ x }) => {
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: x.value }],
-    };
-  });
-
-  return (
-    <View style={s.playground}>
-      <View style={s.boxBorder}>
-        <Animated.View style={[s.box, animatedStyles]} />
-      </View>
-    </View>
-  );
-};
-
-export const Movement = ({ x }) => {
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: x.value * 100 }],
-    };
-  });
-
-  return (
-    <View style={s.playground}>
-      <View style={s.vboxBorder}>
-        <Animated.View style={[s.vbox, animatedStyles]} />
-      </View>
-    </View>
-  );
-};
-
-const examples = {
+export const examples = {
   rotate: {
     title: 'Rotate',
     component: Rotate,
     icon: RotateIcon,
+    color: '#eb4d4b',
   },
   scale: {
     title: 'Scale',
     component: Scale,
     icon: ScaleIcon,
+    color: '#10ac84',
   },
   movement: {
-    title: 'Movement',
+    title: 'Move',
     component: Movement,
     icon: MoveIcon,
+    color: '#f368e0',
   },
 };
 
-type KeyType = keyof typeof examples;
+export type KeyType = keyof typeof examples;
 
-const renderComponent = (key) => {
-  console.log('renderComponent: ', key);
+export const renderComponent = (key: KeyType) => {
   return examples[key].component;
 };
 
-const options = Object.keys(examples).map((d) => {
+export const options = Object.keys(examples).map((d) => {
   const item = examples[d];
-  return { title: item.title, icon: item.icon, key: d };
+  return { title: item.title, icon: item.icon, key: d, color: item.color };
 });
 
-export const OutputSection = ({ x }) => {
-  const [show, setShow] = React.useState<KeyType>('rotate');
+export const OutputSection = ({
+  x,
+  stopAnimation,
+}: {
+  x: Animated.SharedValue<number>;
+  stopAnimation: () => void;
+}) => {
+  const [active, setActive] = React.useState<KeyType>('rotate');
 
   const toggleAnimation = (name: KeyType) => {
-    console.log('name: ', name);
-    setShow(name);
+    stopAnimation();
+    setActive(name);
   };
 
-  const AnimationComp = renderComponent(show);
-
-  const renderAnimationComp = () => {
-    console.log('AnimationComp: ', AnimationComp);
-    return;
-  };
+  const AnimationComp = renderComponent(active);
 
   return (
     <Section>
+      <View style={s.head}>
+        <Text style={s.title}>{examples[active].title}</Text>
+        <AnimatedNumber x={x} />
+      </View>
       <View style={s.container}>
-        <AnimationComp x={x} />
-        <AnimationOptions options={options} toggleAnimation={toggleAnimation} />
+        <View style={s.playground}>
+          <AnimationComp x={x} backgroundColor={examples[active].color} />
+        </View>
+        <AnimationOptions
+          active={active}
+          options={options}
+          toggleAnimation={toggleAnimation}
+        />
       </View>
     </Section>
   );
@@ -121,6 +88,16 @@ const s = StyleSheet.create((theme, constants) => ({
   container: {
     flexDirection: ['row', 'column'],
     flex: 1,
+  },
+  head: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: 10,
+  },
+  title: {
+    fontSize: theme.font.l,
+    color: theme.text,
   },
   playground: {
     flex: 1,
@@ -135,22 +112,6 @@ const s = StyleSheet.create((theme, constants) => ({
   },
   boxBorder: {
     borderWidth: 2,
-    borderColor: theme.black,
-    opacity: theme.opacity.half,
-  },
-  vbox: {
-    height: [100, 150],
-    width: 80,
-    backgroundColor: theme.primary,
-    opacity: theme.opacity.fade,
-    margin: -50,
-  },
-  vboxBorder: {
-    height: [100, 150],
-    width: [220, 440],
-    borderWidth: 2,
-    borderColor: theme.black,
-    opacity: theme.opacity.half,
-    alignItems: 'center',
+    borderColor: theme.border,
   },
 }));

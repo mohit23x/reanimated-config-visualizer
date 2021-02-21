@@ -1,8 +1,8 @@
 export const DEFAULT_CONFIG = {
-  damping: 12,
+  damping: 10,
   mass: 1,
-  stiffness: 150,
-  velocity: 50,
+  stiffness: 100,
+  velocity: 1,
 };
 
 export const DEFAULT_MAX_LIMIT = {

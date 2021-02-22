@@ -9,6 +9,8 @@ Works on Android, IOS and web in both potrait and landscape mode.
 
 Use the expo app and scan this QR
 
+https://expo.io/@mohit23x/projects/reanimated-config-visualizer
+
 ![expo qr](./assets/expoqr.png)
 
 or

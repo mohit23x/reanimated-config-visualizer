@@ -1,45 +1,13 @@
 import * as React from 'react';
-import { View, Text, ScrollView, TransformsStyle } from 'react-native';
+import { View, Text } from 'react-native';
 import { Section } from './ui';
 import { StyleSheet } from 'src/styles';
 import { AnimatedNumber } from 'src/components/AnimatedNumber';
-
-// components
-import { Rotate } from './Rotate';
-import { Scale } from './Scale';
-import { Movement } from './Movement';
 import { AnimationOptions } from './AnimationOptions';
-
-// assets
-import RotateIcon from 'src/assets/Rotate';
-import MoveIcon from 'src/assets/Move';
-import ScaleIcon from 'src/assets/Scale';
 import Animated from 'react-native-reanimated';
+import { ExampleKeyType, examples } from 'src/constants';
 
-export const examples = {
-  rotate: {
-    title: 'Rotate',
-    component: Rotate,
-    icon: RotateIcon,
-    color: '#eb4d4b',
-  },
-  scale: {
-    title: 'Scale',
-    component: Scale,
-    icon: ScaleIcon,
-    color: '#10ac84',
-  },
-  movement: {
-    title: 'Move',
-    component: Movement,
-    icon: MoveIcon,
-    color: '#f368e0',
-  },
-};
-
-export type KeyType = keyof typeof examples;
-
-export const renderComponent = (key: KeyType) => {
+export const renderComponent = (key: ExampleKeyType) => {
   return examples[key].component;
 };
 
@@ -55,9 +23,9 @@ export const OutputSection = ({
   x: Animated.SharedValue<number>;
   stopAnimation: () => void;
 }) => {
-  const [active, setActive] = React.useState<KeyType>('rotate');
+  const [active, setActive] = React.useState<ExampleKeyType>('rotate');
 
-  const toggleAnimation = (name: KeyType) => {
+  const toggleAnimation = (name: ExampleKeyType) => {
     stopAnimation();
     setActive(name);
   };

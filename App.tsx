@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { HomeScreen } from 'src/screen/HomeScreen';
 import { ThemeProvider } from 'src/styles';
 

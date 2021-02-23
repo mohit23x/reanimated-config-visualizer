@@ -1,23 +1,18 @@
 import * as React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Section } from './ui';
-import { StyleSheet } from 'src/styles';
 import { Actions } from './Actions';
 import { Slider } from './Slider';
 import { SettingModal } from './SettingModal';
-import { ActionTypes } from 'src/types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ConfigType, DEFAULT_MAX_LIMIT, STEP } from 'src/constants';
+import { StyleSheet } from 'src/styles';
+import { ActionTypes, InitStateType } from 'src/types';
+import { ConfigType, DEFAULT_MAX_LIMIT, LimitType, STEP } from 'src/constants';
 
 const persistConfig = (payload: ConfigType) => {
   AsyncStorage.setItem('config', JSON.stringify(payload));
 };
 
-export const initState = DEFAULT_MAX_LIMIT;
-
-const reducer = (
-  state: typeof initState = DEFAULT_MAX_LIMIT,
-  action: ActionTypes
-) => {
+const reducer = (state: LimitType = DEFAULT_MAX_LIMIT, action: ActionTypes) => {
   switch (action.type) {
     case 'SET':
       return { ...state, ...action.payload };
@@ -35,12 +30,12 @@ export const InputSection = ({
 }: {
   onPress: () => void;
   state: ConfigType;
-  handleChange: () => void;
   animating: boolean;
   stopAnimation: () => void;
+  handleChange: (a: Partial<InitStateType>) => void;
 }) => {
   const [show, setShow] = React.useState(false);
-  const [LIMIT, dispatch] = React.useReducer(reducer, initState);
+  const [LIMIT, dispatch] = React.useReducer(reducer, DEFAULT_MAX_LIMIT);
 
   const toggleModal = () => setShow((c) => !c);
 
@@ -55,11 +50,13 @@ export const InputSection = ({
 
   const handleSave = () => {
     persistConfig(LIMIT);
+    alert('saved');
   };
 
   const handleReset = () => {
     setConfig(DEFAULT_MAX_LIMIT);
     persistConfig(DEFAULT_MAX_LIMIT);
+    alert('done');
   };
 
   const setConfig = (obj: Partial<ConfigType>) => {

@@ -6,13 +6,11 @@ import {
   withSpring,
 } from 'react-native-reanimated';
 import { InputSection } from 'src/components/InputSection';
-import { Container, Divider } from 'src/components/ui';
+import { Container } from 'src/components/ui';
 import { OutputSection } from 'src/components/OutputSection';
 import type { ActionTypes, InitStateType } from 'src/types';
 import { ConfigType, DEFAULT_CONFIG } from 'src/constants';
 import { useTheme } from 'src/styles';
-
-export const initState = DEFAULT_CONFIG;
 
 const reducer = (state: ConfigType, action: ActionTypes) => {
   switch (action.type) {
@@ -25,7 +23,7 @@ const reducer = (state: ConfigType, action: ActionTypes) => {
 
 export const HomeScreen = () => {
   const x = useSharedValue(0);
-  const [state, dispatch] = React.useReducer(reducer, initState);
+  const [state, dispatch] = React.useReducer(reducer, DEFAULT_CONFIG);
   const [animating, setAnimating] = React.useState(false);
   useTheme();
 
@@ -44,7 +42,6 @@ export const HomeScreen = () => {
   const onPress = () => {
     setAnimating(true);
     cancelAnimation(x);
-    console.log(x.value);
     x.value = withSpring(x.value === 0 ? 1 : 0, state, () =>
       runOnJS(animationCompleted)()
     );

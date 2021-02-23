@@ -67,7 +67,7 @@ export const Attribution = () => {
     >
       <Text style={s.label}>The assets were taken from</Text>
       {ASSETS.map((d) => (
-        <Link {...d} />
+        <Link key={d.url} {...d} />
       ))}
       <Text style={s.title}>Made with some amazing technologies</Text>
 

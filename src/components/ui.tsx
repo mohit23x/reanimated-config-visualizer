@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { TouchableOpacity, View, ViewStyle, Text } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  ViewStyle,
+  Text,
+  ButtonProps,
+} from 'react-native';
 import { StyleSheet } from 'src/styles';
 
 type Props = {
@@ -19,9 +25,17 @@ export const Divider = () => {
   return <View style={s.divider} />;
 };
 
-export const Button = ({ onPress, title }) => {
+export const Button = ({
+  onPress,
+  style,
+  title,
+}: {
+  onPress: () => any;
+  style?: ViewStyle;
+  title: string;
+}) => {
   return (
-    <TouchableOpacity style={[s.btn]} onPress={onPress}>
+    <TouchableOpacity style={[s.btn, style]} onPress={onPress}>
       <Text>{title}</Text>
     </TouchableOpacity>
   );

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { ExampleKeyType } from 'src/constants';
 import { StyleSheet } from 'src/styles';
 
 export const Option = ({
@@ -8,8 +9,8 @@ export const Option = ({
   active,
 }: {
   option: any;
-  toggleAnimation: (a: any) => void;
-  active: boolean;
+  active: ExampleKeyType;
+  toggleAnimation: (name: ExampleKeyType) => void;
 }) => {
   const Icon = option.icon;
 
@@ -28,7 +29,15 @@ export const Option = ({
   );
 };
 
-export const AnimationOptions = ({ options, toggleAnimation, active }) => {
+export const AnimationOptions = ({
+  options,
+  toggleAnimation,
+  active,
+}: {
+  options: any;
+  toggleAnimation: (name: ExampleKeyType) => void;
+  active: ExampleKeyType;
+}) => {
   return (
     <View style={s.container}>
       <ScrollView

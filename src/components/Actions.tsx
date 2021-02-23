@@ -10,34 +10,34 @@ export const Actions = ({
   stopAnimation,
   handleSetting,
 }: {
-  onPress: () => void;
   animating: boolean;
+  onPress: () => void;
   stopAnimation: () => void;
   handleSetting: () => void;
 }) => {
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <View>
-        <TouchableOpacity
-          onPress={handleSetting}
-          style={{
-            height: 50,
-            paddingHorizontal: 15,
-            backgroundColor: StyleSheet.theme.primary,
-            justifyContent: 'center',
-            borderRadius: 10,
-            marginRight: 5,
-          }}
-        >
+        <TouchableOpacity onPress={handleSetting} style={s.setting}>
           <SettingIcon fill={'#000'} height={30} width={30} />
         </TouchableOpacity>
       </View>
       <PlayButton
         animating={animating}
         onPress={onPress}
-        title="play"
         stopAnimation={stopAnimation}
       />
     </View>
   );
 };
+
+const s = StyleSheet.create({
+  setting: {
+    height: 50,
+    paddingHorizontal: 15,
+    backgroundColor: StyleSheet.theme.primary,
+    justifyContent: 'center',
+    borderRadius: 10,
+    marginRight: 5,
+  },
+});

@@ -1,17 +1,23 @@
 import * as React from 'react';
 import { View, Image, Modal, Switch, Text, ScrollView } from 'react-native';
+import { ConfigType, LimitType } from 'src/constants';
 import { darkTheme, lightTheme, StyleSheet } from 'src/styles';
 import { Attribution } from './Attribution';
 import { ConfigureLimit } from './ConfigureLimit';
 import { Button, Divider } from './ui';
 
-const DarkModeSetting = ({ isLight, toggleSwitch }) => {
+const DarkModeSetting = () => {
+  const isLight = StyleSheet.theme.name === 'light';
+
+  const toggleSwitch = () => {
+    StyleSheet.build(isLight ? darkTheme : lightTheme);
+  };
+
   return (
     <View style={s.darkModeContainer}>
       <Text style={{ color: StyleSheet.theme.text }}>Light Mode</Text>
       <Switch
         thumbColor={StyleSheet.theme.icon}
-        ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
         value={isLight}
         style={{ marginRight: 10 }}
@@ -27,30 +33,22 @@ export const SettingModal = ({
   setConfig,
   handleReset,
   handleSave,
+}: {
+  show: boolean;
+  limit: LimitType;
+  toggleModal: () => void;
+  handleReset: () => void;
+  handleSave: () => void;
+  setConfig: (obj: Partial<ConfigType>) => void;
 }) => {
-  const [isLight, setIsLight] = React.useState(
-    StyleSheet.theme.name === 'light'
-  );
-
-  const toggleSwitch = (val) => {
-    setIsLight(val);
-    StyleSheet.build(isLight ? darkTheme : lightTheme);
-  };
-
   return (
     <Modal animationType="slide" onRequestClose={toggleModal} visible={show}>
       <ScrollView style={s.container}>
         <Image
           source={{ uri: 'https://reactnative.dev/img/header_logo.svg' }}
-          style={{
-            height: 100,
-            width: 100,
-            resizeMode: 'contain',
-            marginVertical: 20,
-            alignSelf: 'center',
-          }}
+          style={s.image}
         />
-        <DarkModeSetting isLight={isLight} toggleSwitch={toggleSwitch} />
+        <DarkModeSetting />
         <ConfigureLimit
           limit={limit}
           setConfig={setConfig}
@@ -81,5 +79,12 @@ const s = StyleSheet.create((theme) => ({
   },
   input: {
     color: theme.text,
+  },
+  image: {
+    height: 100,
+    width: 100,
+    resizeMode: 'contain',
+    marginVertical: 20,
+    alignSelf: 'center',
   },
 }));

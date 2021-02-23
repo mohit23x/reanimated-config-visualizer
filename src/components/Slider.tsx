@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
-import { StyleSheet } from 'src/styles';
 import RNSlider from '@react-native-community/slider';
+import { View, Text } from 'react-native';
+import { StyleSheet } from 'src/styles';
 import { InitStateType } from 'src/types';
 
 export const Slider = ({
@@ -52,7 +52,7 @@ export const Slider = ({
   );
 };
 
-const s = StyleSheet.create((theme, constants) => ({
+const s = StyleSheet.create((theme) => ({
   container: {
     marginVertical: 5,
     width: 300,

@@ -1,5 +1,6 @@
 {
   "background_color": "#ffffff",
+  "description": "Reanimated animation config visualizer",
   "display": "standalone",
   "lang": "en",
   "name": "reanimated-config-visualizer",

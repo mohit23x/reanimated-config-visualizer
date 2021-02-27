@@ -42,7 +42,6 @@ export const HomeScreen = () => {
   useTheme();
 
   const handleChange = (payload: Partial<ConfigType>) => {
-    console.log('pay: ', payload);
     dispatch({ type: 'SET_CONFIG', payload });
   };
 

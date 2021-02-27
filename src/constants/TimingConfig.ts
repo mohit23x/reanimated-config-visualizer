@@ -1,5 +1,5 @@
+// many easing function were picked from https://github.com/thisXY/react-native-easing
 import { Easing } from 'react-native-reanimated';
-import DefinedEasing from './Easing';
 
 export const EasingConfig = {
   linear: { config: Easing.linear, copy: 'Easing.linear' },
@@ -12,6 +12,7 @@ export const EasingConfig = {
   bounce: { config: Easing.bounce, copy: 'Easing.bounce' },
   in: { config: Easing.in, copy: 'Easing.in' },
   // out - not working
+  // poly - not working
   // back - not working
   elastic: (x: number) => {
     return {

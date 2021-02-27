@@ -29,7 +29,6 @@ export const WithTiming = ({ handleChange, config, onPlay, handleSetting }) => {
 
   const handleCopy = () => {
     const currentConfig = EasingConfig[ease];
-    console.log('config: ', config);
     if (currentConfig) {
       if (isFunction(currentConfig)) {
         const { copy } = currentConfig(numSlider.value);

@@ -72,14 +72,4 @@ const s = StyleSheet.create((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  box: {
-    height: 180,
-    width: 180,
-    backgroundColor: theme.primary,
-    opacity: theme.opacity.fade,
-  },
-  boxBorder: {
-    borderWidth: 2,
-    borderColor: theme.border,
-  },
 }));

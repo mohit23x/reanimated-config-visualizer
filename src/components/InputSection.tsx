@@ -1,20 +1,41 @@
 import * as React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Section } from './ui';
+import { Button, Section } from './ui';
 import { Actions } from './Actions';
 import { Slider } from './Slider';
 import { SettingModal } from './SettingModal';
 import { StyleSheet } from 'src/styles';
 import { ActionTypes, InitStateType } from 'src/types';
-import { ConfigType, DEFAULT_MAX_LIMIT, LimitType, STEP } from 'src/constants';
+import {
+  AnimationTypes,
+  ConfigType,
+  DEFAULT_MAX_LIMIT,
+  LimitType,
+  SpringConfigType,
+  SpringLimitType,
+  StateType,
+  Step,
+} from 'src/constants';
+import { ScrollView, View, Text } from 'react-native';
+import { Tabs } from './Tabs';
+import { withTiming } from 'react-native-reanimated';
+import { Select } from './Select';
+import Easing from 'src/constants/Easing';
+import { EasingConfig } from 'src/constants/TimingConfig';
+import Clipboard from 'expo-clipboard';
+import { WithTiming } from './WithTiming';
+import { WithSprings } from './WithSpring';
 
-const persistConfig = (payload: ConfigType) => {
+const persistConfig = (payload: SpringLimitType) => {
   AsyncStorage.setItem('config', JSON.stringify(payload));
 };
 
-const reducer = (state: LimitType = DEFAULT_MAX_LIMIT, action: ActionTypes) => {
+const reducer = (
+  state: SpringLimitType = DEFAULT_MAX_LIMIT,
+  action: ActionTypes
+) => {
   switch (action.type) {
-    case 'SET':
+    case 'SET_CONFIG':
       return { ...state, ...action.payload };
     default:
       return state;
@@ -22,29 +43,29 @@ const reducer = (state: LimitType = DEFAULT_MAX_LIMIT, action: ActionTypes) => {
 };
 
 export const InputSection = ({
-  onPress,
+  onPlay,
   state,
-  handleChange,
-  animating,
   stopAnimation,
+  handleChange,
+  handleAnimationType,
 }: {
-  onPress: () => void;
-  state: ConfigType;
-  animating: boolean;
+  state: StateType;
+  onPlay: () => void;
   stopAnimation: () => void;
-  handleChange: (a: Partial<InitStateType>) => void;
+  handleChange: (a: Partial<ConfigType>) => void;
+  handleAnimationType: (a: AnimationTypes) => void;
 }) => {
-  const [show, setShow] = React.useState(false);
   const [LIMIT, dispatch] = React.useReducer(reducer, DEFAULT_MAX_LIMIT);
+  const [show, setShow] = React.useState(false);
 
   const toggleModal = () => setShow((c) => !c);
 
   const getConfig = async () => {
     const data = await AsyncStorage.getItem('config');
     if (data) {
-      dispatch({ type: 'SET', payload: JSON.parse(data) });
+      dispatch({ type: 'SET_CONFIG', payload: JSON.parse(data) });
     } else {
-      dispatch({ type: 'SET', payload: DEFAULT_MAX_LIMIT });
+      dispatch({ type: 'SET_CONFIG', payload: DEFAULT_MAX_LIMIT });
     }
   };
 
@@ -61,7 +82,7 @@ export const InputSection = ({
 
   const setConfig = (obj: Partial<ConfigType>) => {
     const payload = Object.assign({}, LIMIT, obj);
-    dispatch({ type: 'SET', payload });
+    dispatch({ type: 'SET_CONFIG', payload });
   };
 
   React.useEffect(() => {
@@ -70,43 +91,30 @@ export const InputSection = ({
 
   return (
     <Section style={s.section}>
-      {/* <Select title={'Preset'} /> */}
+      <Tabs
+        handleAnimationType={handleAnimationType}
+        active={state.animationType}
+      />
+      {state.animationType === 'timing' && (
+        <WithTiming
+          handleChange={handleChange}
+          config={state.config}
+          onPlay={onPlay}
+          handleSetting={toggleModal}
+        />
+      )}
 
-      <Slider
-        stateKey={'damping'}
-        value={state.damping}
-        handleChange={handleChange}
-        maximumValue={LIMIT.damping}
-        step={STEP.damping}
-      />
-      <Slider
-        stateKey={'mass'}
-        value={state.mass}
-        handleChange={handleChange}
-        maximumValue={LIMIT.mass}
-        step={STEP.mass}
-      />
-      <Slider
-        stateKey={'stiffness'}
-        value={state.stiffness}
-        handleChange={handleChange}
-        maximumValue={LIMIT.stiffness}
-        step={STEP.stiffness}
-      />
-      <Slider
-        stateKey={'velocity'}
-        value={state.velocity}
-        handleChange={handleChange}
-        maximumValue={LIMIT.velocity}
-        step={STEP.velocity}
-      />
+      {state.animationType === 'spring' && (
+        <WithSprings
+          config={state.config}
+          limit={LIMIT}
+          step={Step}
+          handleChange={handleChange}
+          onPlay={onPlay}
+          handleSetting={toggleModal}
+        />
+      )}
 
-      <Actions
-        animating={animating}
-        onPress={onPress}
-        stopAnimation={stopAnimation}
-        handleSetting={toggleModal}
-      />
       <SettingModal
         toggleModal={toggleModal}
         show={show}
@@ -120,13 +128,10 @@ export const InputSection = ({
 };
 
 const s = StyleSheet.create({
-  container: {
+  section: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-  section: {
-    alignItems: 'center',
     justifyContent: 'space-evenly',
+    // backgroundColor: 'green',
   },
 });

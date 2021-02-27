@@ -20,7 +20,12 @@ export const Option = ({
   return (
     <TouchableOpacity onPress={() => toggleAnimation(option.key)}>
       <View style={s.outputOption}>
-        <Icon fill={activeColor} style={{ transform: [{ scale: 0.7 }] }} />
+        <Icon
+          fill={activeColor}
+          // height={30}
+          // width={30}
+          style={s.svg}
+        />
         <Text style={[s.outputText, { color: activeColor }]}>
           {option.title}
         </Text>
@@ -57,7 +62,7 @@ export const AnimationOptions = ({
   );
 };
 
-const s = StyleSheet.create((theme, constants) => ({
+const s = StyleSheet.create((theme) => ({
   container: {
     maxWidth: [60, undefined, undefined],
     maxHeight: [undefined, 70],
@@ -68,19 +73,21 @@ const s = StyleSheet.create((theme, constants) => ({
     backgroundColor: theme.surface,
     flexGrow: 1,
     justifyContent: 'space-evenly',
-    paddingHorizontal: 2,
-    borderRadius: 18,
+    paddingHorizontal: [8, undefined],
+    paddingVertical: [undefined, 8],
+    borderRadius: theme.borderRadius.m,
   },
   outputOption: {
-    height: [60, 70],
-    width: [60, 100],
-    marginHorizontal: [0, 10],
-    marginVertical: [8, 0],
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  svg: {
+    height: 30,
+    width: 30,
   },
   outputText: {
     fontSize: 12,
-    marginBottom: 5,
+    marginVertical: 5,
     fontWeight: 'bold',
   },
 }));

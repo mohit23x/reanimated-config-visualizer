@@ -14,10 +14,12 @@
     "@react-native-community/slider": "^3.0.3",
     "@react-native-picker/picker": "^1.9.11",
     "expo": "~40.0.0",
+    "expo-clipboard": "^1.0.1",
     "expo-status-bar": "~1.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
+    "react-native-easing": "^1.0.1",
     "react-native-reanimated": "2.0.0-rc.0",
     "react-native-redash": "^16.0.8",
     "react-native-sugar-style": "^0.1.8",
@@ -30,7 +32,7 @@
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
     "gh-pages": "^3.1.0",
-    "typescript": "~4.0.0"
+    "typescript": "^4.2.2"
   },
   "homepage": "http://mohit23x.github.io/reanimated-config-visualizer",
   "private": true

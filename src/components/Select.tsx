@@ -7,38 +7,61 @@ export const Select = ({
   title,
   data = [],
   onValueChange,
+  selectedValue,
+  labelFormatter = (a) => a,
 }: {
   title?: string;
   data?: Array<{ label: any; value: any }>;
-  onValueChange?: any;
+  onValueChange: (a: any) => void;
+  selectedValue: any;
+  labelFormatter?: (a: string) => string;
 }) => {
+  const onChange = (a) => {
+    onValueChange(a);
+  };
+
   return (
-    <>
-      <Text>{title}</Text>
+    <View style={{ width: '100%' }}>
+      <Text style={s.label}>{title}</Text>
       <View style={s.pickerContainer}>
-        <Picker onValueChange={onValueChange} mode="dialog" style={s.picker}>
+        <Picker
+          onValueChange={onChange}
+          mode="dialog"
+          style={s.picker}
+          selectedValue={selectedValue}
+        >
           {data.map((d) => (
-            <Picker.Item label={d.label} value={d.value} />
+            <Picker.Item
+              key={d.label}
+              label={labelFormatter(d.label)}
+              value={d.value}
+            />
           ))}
         </Picker>
       </View>
-    </>
+    </View>
   );
 };
 
 const s = StyleSheet.create((theme, constants) => ({
+  pickerContainer: {
+    height: 40,
+    width: [constants.width - 100, '100%'],
+    borderWidth: 1,
+    borderRadius: theme.borderRadius.m,
+    overflow: 'hidden',
+    borderColor: theme.text,
+    backgroundColor: theme.background,
+  },
   picker: {
-    backgroundColor: 'transparent',
+    backgroundColor: theme.background,
     borderWidth: 0,
     height: '100%',
     color: theme.text,
   },
-  pickerContainer: {
-    height: 40,
-    width: '70%',
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: theme.text,
-    backgroundColor: theme.background,
+  label: {
+    color: theme.text,
+    alignSelf: 'flex-start',
+    marginBottom: 5,
   },
 }));

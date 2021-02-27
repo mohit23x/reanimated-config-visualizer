@@ -10,7 +10,10 @@ const commonTheme = {
     fade: 0.7,
     half: 0.4,
   },
-  white: '#fbfbfb',
+  borderRadius: {
+    m: 10,
+  },
+  black: '#2b2b2b',
 };
 
 export const lightTheme = {
@@ -36,9 +39,8 @@ export const darkTheme = {
   primary: '#feca57',
   border: '#A1A9B1',
   slider: '#888',
-  icon: '#ccc',
+  icon: '#cccccc',
 };
 
-export type Theme = typeof darkTheme;
-export const { StyleSheet, ThemeProvider, useTheme } = Sugar<Theme>(darkTheme);
+export const { StyleSheet, ThemeProvider, useTheme } = Sugar(darkTheme);
 export default StyleSheet;

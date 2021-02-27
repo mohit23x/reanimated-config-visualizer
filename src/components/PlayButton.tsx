@@ -4,24 +4,15 @@ import { Button } from './ui';
 
 const activeOpacity = 0.6;
 
-export const PlayButton = ({
-  onPress,
-  animating,
-  stopAnimation,
-}: {
-  onPress: () => void;
-  animating: boolean;
-  stopAnimation: () => void;
-}) => {
-  const handlePress = () => (animating ? stopAnimation() : onPress());
-
-  const opacity = animating ? activeOpacity : 1;
+export const PlayButton = ({ onPress }: { onPress: () => void }) => {
+  const handlePress = () => onPress();
 
   return (
     <Button
       onPress={handlePress}
-      style={{ ...s.btn, opacity }}
-      title={animating ? 'STOP' : 'PLAY'}
+      style={s.btn}
+      textStyle={s.text}
+      title={'PLAY'}
     />
   );
 };
@@ -30,7 +21,6 @@ const s = StyleSheet.create({
   btn: {
     backgroundColor: StyleSheet.theme.primary,
     minWidth: 220,
-    flex: 1,
   },
   text: {
     fontWeight: 'bold',

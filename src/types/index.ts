@@ -1,9 +1,21 @@
 import Animated from 'react-native-reanimated';
-import { initState } from 'src/screen/HomeScreen';
+import { DefaultStateType } from 'src/screen/HomeScreen';
+import { AnimationTypes, ConfigType } from 'src/constants';
 
-export type InitStateType = typeof initState;
+export type InitStateType = typeof DefaultStateType;
 
-export type ActionTypes = { type: 'SET'; payload?: any };
+type SetConfigType = {
+  type: 'SET_CONFIG';
+  payload: Partial<ConfigType>;
+};
+
+type SetAnimationType = {
+  type: 'SET_ANIMATION';
+  payload: AnimationTypes;
+};
+
+export type ActionTypes = SetConfigType | SetAnimationType;
+
 export type AnimationCompProps = {
   x: Animated.SharedValue<number>;
   backgroundColor: string;

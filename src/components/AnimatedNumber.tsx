@@ -4,7 +4,7 @@ import Animated, {
   useAnimatedRef,
   useDerivedValue,
 } from 'react-native-reanimated';
-import { TextInput } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { ReText } from 'react-native-redash';
 
 const FIXED = 1000;
@@ -26,11 +26,16 @@ const WebText = ({ x }: Props) => {
   });
 
   return (
-    <ReTextInput defaultValue="ad" ref={inputAnimatedRef} style={s.text} />
+    <ReTextInput
+      disabled
+      defaultValue="ad"
+      ref={inputAnimatedRef}
+      style={s.text}
+    />
   );
 };
 
-const NativeText = ({ x }) => {
+const NativeText = ({ x }: Props) => {
   const animatedText = useDerivedValue(() =>
     (Math.floor(x.value * FIXED) / FIXED).toString()
   );
@@ -49,5 +54,7 @@ export const AnimatedNumber = ({ x }: Props) => {
 const s = StyleSheet.create((theme, constants) => ({
   text: {
     color: theme.text,
+    textAlign: 'right',
+    fontSize: theme.font.m,
   },
 }));

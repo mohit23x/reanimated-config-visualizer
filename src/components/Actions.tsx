@@ -3,18 +3,21 @@ import { TouchableOpacity, View } from 'react-native';
 import { StyleSheet } from 'src/styles';
 import { PlayButton } from './PlayButton';
 import SettingIcon from 'src/assets/Setting';
+import CopyIcon from 'src/assets/Copy';
 
 export const Actions = ({
-  onPress,
-  animating,
-  stopAnimation,
+  onPlay,
   handleSetting,
+  handleCopy,
 }: {
-  animating: boolean;
-  onPress: () => void;
-  stopAnimation: () => void;
+  onPlay: () => void;
   handleSetting: () => void;
+  handleCopy: () => void;
 }) => {
+  const onCopyPress = () => {
+    handleCopy();
+    alert('🎉🎉🎉copied!🎉🎉🎉');
+  };
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <View>
@@ -22,22 +25,23 @@ export const Actions = ({
           <SettingIcon fill={'#000'} height={30} width={30} />
         </TouchableOpacity>
       </View>
-      <PlayButton
-        animating={animating}
-        onPress={onPress}
-        stopAnimation={stopAnimation}
-      />
+      <PlayButton onPress={onPlay} />
+      <View>
+        <TouchableOpacity onPress={onCopyPress} style={s.setting}>
+          <CopyIcon fill={'#000'} height={32} width={32} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
-const s = StyleSheet.create({
+const s = StyleSheet.create((theme) => ({
   setting: {
     height: 50,
     paddingHorizontal: 15,
     backgroundColor: StyleSheet.theme.primary,
     justifyContent: 'center',
-    borderRadius: 10,
+    borderRadius: theme.borderRadius.m,
     marginRight: 5,
   },
-});
+}));

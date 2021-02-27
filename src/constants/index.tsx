@@ -1,11 +1,17 @@
 import { Movement, Rotate, Scale } from 'src/components';
+import {
+  withSpring,
+  Animated,
+  SpringState,
+  Easing,
+} from 'react-native-reanimated';
 import RotateIcon from 'src/assets/Rotate';
 import MoveIcon from 'src/assets/Move';
 import ScaleIcon from 'src/assets/Scale';
 
-// ============= config =============
+// ============= spring config =============
 
-export const DEFAULT_CONFIG = {
+export const SPRING_CONFIG = {
   damping: 10,
   mass: 1,
   stiffness: 100,
@@ -19,15 +25,43 @@ export const DEFAULT_MAX_LIMIT = {
   velocity: 100,
 };
 
-export const STEP = {
+export const Step = {
   damping: 0.5,
   mass: 0.1,
   stiffness: 1,
   velocity: 1,
 };
 
-export type ConfigType = typeof DEFAULT_CONFIG;
-export type LimitType = typeof DEFAULT_MAX_LIMIT;
+export type SpringConfigType = typeof DEFAULT_MAX_LIMIT;
+export type SpringLimitType = typeof DEFAULT_MAX_LIMIT;
+
+// ============= timing config ==================
+
+export const TIMING_CONFIG: TimingConfigType = {
+  duration: 1000,
+  easing: Easing.linear,
+};
+
+export type TimingConfigType = {
+  duration: number;
+  easing: typeof Easing;
+};
+
+// ================= default state ==============
+
+export type ConfigType = SpringConfigType | TimingConfigType;
+
+export type StateType = {
+  animationType: AnimationTypes;
+  config: ConfigType;
+};
+
+export const DefaultState: StateType = {
+  animationType: 'spring',
+  config: SPRING_CONFIG,
+};
+
+export type AnimationTypes = 'spring' | 'timing';
 
 // ========== output examples =============
 

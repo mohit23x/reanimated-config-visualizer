@@ -1,3 +1,4 @@
+import { P } from '@expo/html-elements';
 import * as React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { ExampleKeyType } from 'src/constants';
@@ -26,9 +27,7 @@ export const Option = ({
           // width={30}
           style={s.svg}
         />
-        <Text style={[s.outputText, { color: activeColor }]}>
-          {option.title}
-        </Text>
+        <P style={[s.outputText, { color: activeColor }]}>{option.title}</P>
       </View>
     </TouchableOpacity>
   );

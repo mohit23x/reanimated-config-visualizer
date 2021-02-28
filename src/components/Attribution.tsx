@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity, Linking } from 'react-native';
+import { View, Text } from 'react-native';
 import { StyleSheet } from 'src/styles';
+import { H1, A } from '@expo/html-elements';
 
-const ASSETS = [{ title: 'FlatIcon', url: 'https://www.flaticon.com/' }];
+const GithubURL = 'https://github.com/mohit23x/reanimated-config-visualizer';
 
 const TECH = [
   { title: 'React Native', url: 'https://reactnative.dev/' },
@@ -38,21 +39,17 @@ const TECH = [
 ];
 
 const Link = ({ title, url }: { title: string; url: string }) => {
-  const onPress = () => {
-    Linking.canOpenURL(url).then(() => {
-      return Linking.openURL(url);
-    });
-  };
-
   return (
-    <TouchableOpacity
+    <A
       style={{
-        padding: 5,
+        paddingVertical: 2,
+        color: StyleSheet.theme.secondary,
       }}
-      onPress={onPress}
+      href={url}
+      target="_blank"
     >
-      <Text style={s.label}>{title}</Text>
-    </TouchableOpacity>
+      {title}
+    </A>
   );
 };
 
@@ -65,15 +62,22 @@ export const Attribution = () => {
         marginVertical: 10,
       }}
     >
-      <Text style={s.label}>The assets were taken from</Text>
-      {ASSETS.map((d) => (
-        <Link key={d.url} {...d} />
-      ))}
-      <Text style={s.title}>Made with some amazing technologies</Text>
+      <Text style={s.label}>
+        Thanks to <Link title="Flaticon" url="https://www.flaticon.com/" /> for
+        the assets
+      </Text>
+
+      <H1 style={s.title}>Made with</H1>
 
       {TECH.map((d) => (
         <Link key={d.title} title={d.title} url={d.url} />
       ))}
+
+      <H1 style={s.title}>Open source</H1>
+      <Text style={s.label}>Made with ❤️ by Mohit23x</Text>
+      <Text style={s.label}>
+        source available at <Link title="Github" url={GithubURL} />
+      </Text>
     </View>
   );
 };
@@ -84,7 +88,8 @@ const s = StyleSheet.create((theme) => ({
     fontWeight: 'bold',
     fontSize: theme.font.m,
     textAlign: 'center',
-    marginVertical: 5,
+    marginVertical: 2,
+    paddingTop: 10,
   },
   label: {
     color: theme.text,

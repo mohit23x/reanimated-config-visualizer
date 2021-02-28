@@ -1,3 +1,4 @@
+import { H1, H6 } from '@expo/html-elements';
 import * as React from 'react';
 import { View, Switch, Text, TouchableOpacity } from 'react-native';
 import { ConfigType, LimitType } from 'src/constants';
@@ -17,6 +18,7 @@ export const ConfigureLimit = ({
 }) => {
   return (
     <View>
+      <H1 style={s.heading}>Configure max limits</H1>
       <InputCounter
         value={limit.damping}
         field={'damping'}
@@ -83,13 +85,18 @@ const s = StyleSheet.create((theme) => ({
     alignItems: 'center',
     marginVertical: 5,
   },
+  heading: {
+    color: theme.text,
+    fontSize: theme.font.m,
+  },
   counterBtn: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.surface,
     marginHorizontal: 10,
+    borderRadius: theme.borderRadius.s,
   },
   btnText: {
     fontWeight: 'bold',

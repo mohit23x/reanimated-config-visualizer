@@ -5,6 +5,7 @@ import { darkTheme, lightTheme, StyleSheet } from 'src/styles';
 import { Attribution } from './Attribution';
 import { ConfigureLimit } from './ConfigureLimit';
 import { Button, Divider } from './ui';
+import ReactNativeIcon from 'src/assets/ReactNative';
 
 const DarkModeSetting = () => {
   const isLight = StyleSheet.theme.name === 'light';
@@ -44,11 +45,10 @@ export const SettingModal = ({
   return (
     <Modal animationType="slide" onRequestClose={toggleModal} visible={show}>
       <ScrollView style={s.container}>
-        <Image
-          source={{ uri: 'https://reactnative.dev/img/header_logo.svg' }}
-          style={s.image}
-        />
+        <ReactNativeIcon style={s.image} />
+        <Divider />
         <DarkModeSetting />
+        <Divider />
         <ConfigureLimit
           limit={limit}
           setConfig={setConfig}
@@ -57,17 +57,18 @@ export const SettingModal = ({
         />
         <Divider />
         <Attribution />
-        <Button onPress={toggleModal} title={'CLOSE'} />
+        <Divider />
+        <Button onPress={toggleModal} title={'❌ CLOSE'} />
       </ScrollView>
     </Modal>
   );
 };
 
-const s = StyleSheet.create((theme) => ({
+const s = StyleSheet.create((theme, constants) => ({
   container: {
     flexGrow: 1,
     backgroundColor: theme.background,
-    paddingHorizontal: 10,
+    paddingHorizontal: [10, 30, constants.width / 3],
   },
   darkModeContainer: {
     flexDirection: 'row',

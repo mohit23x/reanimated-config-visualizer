@@ -58,9 +58,12 @@ const s = StyleSheet.create((theme) => ({
     height: 1,
     width: '100%',
     backgroundColor: theme.border,
+    marginBottom: 5,
+    opacity: theme.opacity.fade,
   },
   btn: {
-    height: 50,
+    minHeight: 50,
+    flex: 1,
     maxWidth: 200,
     minWidth: 100,
     borderRadius: theme.borderRadius.m,

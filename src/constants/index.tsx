@@ -1,13 +1,8 @@
-import { Movement, Rotate, Scale } from 'src/components';
-import {
-  withSpring,
-  Animated,
-  SpringState,
-  Easing,
-} from 'react-native-reanimated';
-import RotateIcon from 'src/assets/Rotate';
+import { Easing } from 'react-native-reanimated';
 import MoveIcon from 'src/assets/Move';
+import RotateIcon from 'src/assets/Rotate';
 import ScaleIcon from 'src/assets/Scale';
+import { Movement, Rotate, Scale } from 'src/components';
 
 // ============= spring config =============
 
@@ -87,3 +82,7 @@ export const examples = {
 };
 
 export type ExampleKeyType = keyof typeof examples;
+
+// ============= keyboard ==========
+
+export const KEYS = ['Space', 'Enter', 'NumpadEnter'];

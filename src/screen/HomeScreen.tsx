@@ -1,25 +1,26 @@
 import * as React from 'react';
-import { useState, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
+import { Platform } from 'react-native';
 import {
   cancelAnimation,
-  runOnJS,
   useSharedValue,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { InputSection } from 'src/components/InputSection';
-import { Container } from 'src/components/ui';
 import { OutputSection } from 'src/components/OutputSection';
-import type { ActionTypes } from 'src/types';
+import { Container } from 'src/components/ui';
 import {
   AnimationTypes,
   ConfigType,
   DefaultState,
+  KEYS,
   SPRING_CONFIG,
   StateType,
   TIMING_CONFIG,
 } from 'src/constants';
 import { useTheme } from 'src/styles';
+import type { ActionTypes } from 'src/types';
 
 const reducer = (state: StateType, action: ActionTypes) => {
   switch (action.type) {
@@ -55,7 +56,6 @@ export const HomeScreen = () => {
   };
 
   const onPlay = () => {
-    // setAnimating(true);
     cancelAnimation(x);
     if (state.animationType === 'timing') {
       x.value = withTiming(x.value === 0 ? 1 : 0, state.config);
@@ -63,6 +63,12 @@ export const HomeScreen = () => {
       x.value = withSpring(x.value === 0 ? 1 : 0, state.config);
     }
   };
+
+  useEffect(() => {
+    if (Platform.OS === 'web') {
+      document.body.onkeyup = (e) => (KEYS.includes(e.code) ? onPlay() : null);
+    }
+  }, []);
 
   return (
     <>

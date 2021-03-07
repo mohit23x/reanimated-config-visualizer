@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/reanimated-config-visualizer/static/js/app.d64cf3c2.chunk.js",
-    "app.js.map": "/reanimated-config-visualizer/static/js/app.d64cf3c2.chunk.js.map",
+    "app.js": "/reanimated-config-visualizer/static/js/app.fb46d3c3.chunk.js",
+    "app.js.map": "/reanimated-config-visualizer/static/js/app.fb46d3c3.chunk.js.map",
     "runtime~app.js": "/reanimated-config-visualizer/static/js/runtime~app.8aaaddd2.js",
     "runtime~app.js.map": "/reanimated-config-visualizer/static/js/runtime~app.8aaaddd2.js.map",
     "static/js/2.ea846164.chunk.js": "/reanimated-config-visualizer/static/js/2.ea846164.chunk.js",
@@ -17,6 +17,6 @@
   "entrypoints": [
     "static/js/runtime~app.8aaaddd2.js",
     "static/js/2.ea846164.chunk.js",
-    "static/js/app.d64cf3c2.chunk.js"
+    "static/js/app.fb46d3c3.chunk.js"
   ]
 }

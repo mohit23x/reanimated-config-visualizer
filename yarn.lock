@@ -5450,10 +5450,10 @@ react-native-safe-area-context@3.1.9:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"
   integrity sha512-wmcGbdyE/vBSL5IjDPReoJUEqxkZsywZw5gPwsVUV1NBpw5eTIdnL6Y0uNKHE25Z661moxPHQz6kwAkYQyorxA==
 
-react-native-sugar-style@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/react-native-sugar-style/-/react-native-sugar-style-0.1.8.tgz#9f57814f8987890415d41672906a3eaf7001892d"
-  integrity sha512-abh7cFtllxCAeH0F0xUZMlm+jS6vZiJFm3/YQdsN5zgmnoqznBCGAQ1dCbG6zTTOTlCZif9jXJ4TowRUmEPWjQ==
+react-native-sugar-style@^0.1.22:
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/react-native-sugar-style/-/react-native-sugar-style-0.1.22.tgz#215835a26746b4fe158ffe9bedbbe94945b5c461"
+  integrity sha512-uW6RvqGumxhqILLuemzsEW7vVvFLsgG32D1cBhiGffH3t0xgq12+9OJ38yXNNLsaui1BFbKW5DR5UI0WjLU9Zw==
 
 react-native-svg@^12.1.0:
   version "12.1.0"

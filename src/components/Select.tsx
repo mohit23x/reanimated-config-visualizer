@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import { Picker, PickerIOS } from '@react-native-picker/picker';
 import { StyleSheet } from 'src/styles';
 
 export const Select = ({
@@ -23,22 +23,40 @@ export const Select = ({
   return (
     <View style={{ width: '100%' }}>
       <Text style={s.label}>{title}</Text>
-      <View style={s.pickerContainer}>
-        <Picker
+      {StyleSheet.constants.platform.ios ? (
+        <PickerIOS
           onValueChange={onChange}
-          mode="dialog"
           style={s.picker}
           selectedValue={selectedValue}
+          itemStyle={s.itemStyle}
         >
           {data.map((d) => (
-            <Picker.Item
+            <PickerIOS.Item
               key={d.label}
               label={labelFormatter(d.label)}
               value={d.value}
             />
           ))}
-        </Picker>
-      </View>
+        </PickerIOS>
+      ) : (
+        <View style={s.pickerContainer}>
+          <Picker
+            onValueChange={onChange}
+            mode="dialog"
+            style={s.picker}
+            selectedValue={selectedValue}
+            itemStyle={s.itemStyle}
+          >
+            {data.map((d) => (
+              <Picker.Item
+                key={d.label}
+                label={labelFormatter(d.label)}
+                value={d.value}
+              />
+            ))}
+          </Picker>
+        </View>
+      )}
     </View>
   );
 };
@@ -56,7 +74,13 @@ const s = StyleSheet.create((theme, constants) => ({
   picker: {
     backgroundColor: theme.background,
     borderWidth: 0,
-    height: '100%',
+    height: constants.platform.ios ? 150 : '100%',
+    width: 300,
+    color: theme.text,
+    overflow: 'hidden',
+    justifyContent: 'center',
+  },
+  itemStyle: {
     color: theme.text,
   },
   label: {

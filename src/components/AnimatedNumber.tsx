@@ -44,7 +44,7 @@ const NativeText = ({ x }: Props) => {
 };
 
 export const AnimatedNumber = ({ x }: Props) => {
-  if (StyleSheet.constants.os.web) {
+  if (StyleSheet.constants.platform.web) {
     return <WebText x={x} />;
   }
 

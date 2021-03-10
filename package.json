@@ -23,7 +23,7 @@
     "react-native-easing": "^1.0.1",
     "react-native-reanimated": "2.0.0-rc.0",
     "react-native-redash": "^16.0.8",
-    "react-native-sugar-style": "^0.1.8",
+    "react-native-sugar-style": "^0.1.22",
     "react-native-svg": "^12.1.0",
     "react-native-web": "^0.15.0"
   },

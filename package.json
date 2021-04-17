@@ -16,7 +16,7 @@
     "@react-native-picker/picker": "^1.15.0",
     "expo": "~40.0.0",
     "expo-clipboard": "^1.0.1",
-    "expo-status-bar": "~1.0.3",
+    "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",

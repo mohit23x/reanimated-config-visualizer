@@ -5360,10 +5360,10 @@ react-native-sugar-style@^0.1.22:
   resolved "https://registry.yarnpkg.com/react-native-sugar-style/-/react-native-sugar-style-0.1.22.tgz#215835a26746b4fe158ffe9bedbbe94945b5c461"
   integrity sha512-uW6RvqGumxhqILLuemzsEW7vVvFLsgG32D1cBhiGffH3t0xgq12+9OJ38yXNNLsaui1BFbKW5DR5UI0WjLU9Zw==
 
-react-native-svg@^12.1.0:
-  version "12.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.1.0.tgz#acfe48c35cd5fca3d5fd767abae0560c36cfc03d"
-  integrity sha512-1g9qBRci7man8QsHoXn6tP3DhCDiypGgc6+AOWq+Sy+PmP6yiyf8VmvKuoqrPam/tf5x+ZaBT2KI0gl7bptZ7w==
+react-native-svg@^12.1.1:
+  version "12.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.1.1.tgz#5f292410b8bcc07bbc52b2da7ceb22caf5bcaaee"
+  integrity sha512-NIAJ8jCnXGCqGWXkkJ1GTzO4a3Md5at5sagYV8Vh4MXYnL4z5Rh428Wahjhh+LIjx40EE5xM5YtwyJBqOIba2Q==
   dependencies:
     css-select "^2.1.0"
     css-tree "^1.0.0-alpha.39"

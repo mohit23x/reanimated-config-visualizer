@@ -1080,10 +1080,10 @@
     xcode "^3.0.0"
     xml-js "^1.6.11"
 
-"@expo/html-elements@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.0.1.tgz#ed3aaa5c76de2dd26fd51b532d6d63e3d7f2d8e5"
-  integrity sha512-dSBl3WBjdmJ907Na42Ce9uknwUBKIDnpDFBPz6ikMQYaQFb97pXZQSCo2bnOhbER7ieeLy8RPm+VDtTIVlfZ1Q==
+"@expo/html-elements@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.0.2.tgz#9e913ab860ebf676cecf200385d126649c7c4496"
+  integrity sha512-sB5mrrL0GKew9EMCBwS12zlBjF4hswqpP42T/bacgxadF8CKWGLru4KLrAi2cmBAkUOC1Z/HGmlVWEOi7Gl+OA==
 
 "@expo/image-utils@0.3.12":
   version "0.3.12"

@@ -1,0 +1,28 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "23:30"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@babel/core"
+    versions:
+    - 7.13.16
+  - dependency-name: "@react-native-async-storage/async-storage"
+    versions:
+    - 1.15.3
+  - dependency-name: react-native-web
+    versions:
+    - 0.15.4
+    - 0.16.0
+  - dependency-name: expo-clipboard
+    versions:
+    - 1.0.2
+  - dependency-name: "@types/react-dom"
+    versions:
+    - 17.0.2
+  - dependency-name: react-native-reanimated
+    versions:
+    - 2.0.0

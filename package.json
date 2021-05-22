@@ -13,7 +13,7 @@
     "@expo/html-elements": "^0.0.2",
     "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/slider": "^3.0.3",
-    "@react-native-picker/picker": "^1.15.0",
+    "@react-native-picker/picker": "^1.16.0",
     "expo": "~41.0.1",
     "expo-clipboard": "^1.0.1",
     "expo-status-bar": "~1.0.4",

@@ -1749,10 +1749,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-3.0.3.tgz#830167fd757ba70ac638747ba3169b2dbae60330"
   integrity sha512-8IeHfDwJ9/CTUwFs6x90VlobV3BfuPgNLjTgC6dRZovfCWigaZwVNIFFJnHBakK3pW2xErAPwhdvNR4JeNoYbw==
 
-"@react-native-picker/picker@^1.16.4":
-  version "1.16.4"
-  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.16.4.tgz#85712375dbf0a38e8c20ee1b2d71253c0a1cd520"
-  integrity sha512-V/8XNlTU3QJ/mdY+mCQnuCCZJfIOpgfSnfFDinftWDi66mGuf6tRd+sfCOeKqjug38sdJm9CeNry/66W0EYodw==
+"@react-native-picker/picker@^1.16.7":
+  version "1.16.7"
+  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.16.7.tgz#2c943572efcd21c218ee03f23ba1475544b24cf1"
+  integrity sha512-/QJxL4JniloFvdPDufQTiMQQbpucCQ0w7wvGhZQt0x3KVxvI1f/vzDO+669r/1yipcFZbSLcYIiQSMSpZtkqiQ==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.3"

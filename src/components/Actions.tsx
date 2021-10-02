@@ -19,7 +19,7 @@ export const Actions = ({
     alert('🎉🎉🎉copied!🎉🎉🎉');
   };
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+    <View style={s.row}>
       <View>
         <TouchableOpacity onPress={handleSetting} style={s.setting}>
           <SettingIcon fill={'#000'} height={30} width={30} />
@@ -36,6 +36,7 @@ export const Actions = ({
 };
 
 const s = StyleSheet.create((theme) => ({
+  row: { flexDirection: 'row', alignItems: 'center' },
   setting: {
     height: 50,
     paddingHorizontal: 15,

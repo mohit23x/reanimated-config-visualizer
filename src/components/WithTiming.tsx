@@ -5,12 +5,23 @@ import { camelCaseToNormal, isFunction } from 'src/utils';
 import { Slider } from './Slider';
 import { Select } from './Select';
 import { InputRenderer } from './InputRenderer';
+import { ConfigType, TimingConfigType } from 'src/constants';
 
 const withTimingData = Object.keys(EasingConfig).map((d) => {
   return { label: d, value: d };
 });
 
-export const WithTiming = ({ handleChange, config, onPlay, handleSetting }) => {
+export const WithTiming = ({
+  handleChange,
+  config,
+  onPlay,
+  handleSetting,
+}: {
+  config: TimingConfigType;
+  handleChange: (a: Partial<ConfigType>) => void;
+  onPlay: () => void;
+  handleSetting: () => void;
+}) => {
   const [ease, setEase] = React.useState('linear');
   const [numSlider, setNumSlider] = React.useState({ show: false, value: 2 });
 

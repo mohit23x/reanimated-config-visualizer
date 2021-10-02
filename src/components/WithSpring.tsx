@@ -16,6 +16,8 @@ export const WithSprings = ({
   config: SpringConfigType;
   limit: SpringLimitType;
   handleChange: (a: Partial<ConfigType>) => void;
+  onPlay: () => void;
+  handleSetting: () => void;
 }) => {
   const handleCopy = () => {
     Clipboard.setString(JSON.stringify(config));

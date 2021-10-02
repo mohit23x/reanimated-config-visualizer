@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Slider } from './Slider';
 import { ConfigType, SpringConfigType, SpringLimitType } from 'src/constants';
 import { InputRenderer } from './InputRenderer';
-import Clipboard from 'expo-clipboard';
+import * as Clipboard from 'expo-clipboard';
 
 export const WithSprings = ({
   config,

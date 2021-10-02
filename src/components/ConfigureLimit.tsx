@@ -1,7 +1,7 @@
 import { H1, H6 } from '@expo/html-elements';
 import * as React from 'react';
-import { View, Switch, Text, TouchableOpacity } from 'react-native';
-import { ConfigType, LimitType } from 'src/constants';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { LimitType } from 'src/constants';
 import { StyleSheet } from 'src/styles';
 import { Button } from './ui';
 

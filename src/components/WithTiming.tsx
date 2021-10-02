@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Clipboard from 'expo-clipboard';
+import * as Clipboard from 'expo-clipboard';
 import { EasingConfig } from 'src/constants/TimingConfig';
 import { camelCaseToNormal, isFunction } from 'src/utils';
 import { Slider } from './Slider';

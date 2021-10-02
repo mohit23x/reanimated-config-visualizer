@@ -4,7 +4,7 @@ import Animated, {
   useAnimatedRef,
   useDerivedValue,
 } from 'react-native-reanimated';
-import { TextInput, View } from 'react-native';
+import { TextInput } from 'react-native';
 import { ReText } from 'react-native-redash';
 
 const FIXED = 1000;
@@ -18,7 +18,7 @@ const WebText = ({ x }: Props) => {
 
   useDerivedValue(() => {
     if (inputAnimatedRef && inputAnimatedRef.current) {
-      inputAnimatedRef.current.setNativeProps({
+      inputAnimatedRef.current?.setNativeProps({
         text: (Math.floor(x.value * FIXED) / FIXED).toString(),
       });
     }
@@ -56,5 +56,6 @@ const s = StyleSheet.create((theme, constants) => ({
     color: theme.text,
     textAlign: 'right',
     fontSize: theme.font.m,
+    opacity: 0.8,
   },
 }));

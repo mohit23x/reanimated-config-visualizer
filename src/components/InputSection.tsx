@@ -1,28 +1,18 @@
 import * as React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Button, Section } from './ui';
-import { Actions } from './Actions';
-import { Slider } from './Slider';
+import { Section } from './ui';
 import { SettingModal } from './SettingModal';
 import { StyleSheet } from 'src/styles';
-import { ActionTypes, InitStateType } from 'src/types';
+import { ActionTypes } from 'src/types';
 import {
   AnimationTypes,
   ConfigType,
   DEFAULT_MAX_LIMIT,
-  LimitType,
-  SpringConfigType,
   SpringLimitType,
   StateType,
   Step,
 } from 'src/constants';
-import { ScrollView, View, Text } from 'react-native';
 import { Tabs } from './Tabs';
-import { withTiming } from 'react-native-reanimated';
-import { Select } from './Select';
-import Easing from 'src/constants/Easing';
-import { EasingConfig } from 'src/constants/TimingConfig';
-import Clipboard from 'expo-clipboard';
 import { WithTiming } from './WithTiming';
 import { WithSprings } from './WithSpring';
 

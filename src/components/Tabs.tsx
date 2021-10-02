@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  FlatList,
-  ScrollView,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { StyleSheet } from 'src/styles';
 import { AnimationTypes } from 'src/constants';
 import Timing from 'src/assets/Timing';

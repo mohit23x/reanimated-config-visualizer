@@ -35,7 +35,6 @@ export const OutputSection = ({
   return (
     <Section>
       <View style={s.head}>
-        <Text style={s.title}>{examples[active].title}</Text>
         <AnimatedNumber x={x} />
       </View>
       <View style={s.container}>
@@ -60,12 +59,8 @@ const s = StyleSheet.create((theme) => ({
   head: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     marginHorizontal: 10,
-  },
-  title: {
-    fontSize: theme.font.l,
-    color: theme.text,
   },
   playground: {
     flex: 1,

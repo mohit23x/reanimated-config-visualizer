@@ -98,7 +98,8 @@ export const InputSection = ({
 
       {state.animationType === 'spring' && (
         <WithSprings
-          config={state.config as SpringConfigType}
+          config={state.config as 
+                 }
           limit={LIMIT}
           step={Step}
           handleChange={handleChange}

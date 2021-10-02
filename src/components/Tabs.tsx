@@ -5,7 +5,17 @@ import { AnimationTypes } from 'src/constants';
 import Timing from 'src/assets/Timing';
 import Spring from 'src/assets/Spring';
 
-const Chip = ({ title, onPress, active, Icon }) => {
+const Chip = ({
+  title,
+  onPress,
+  active,
+  Icon,
+}: {
+  title: string;
+  onPress: (...args: any) => any;
+  active: boolean;
+  Icon: typeof React.Component;
+}) => {
   const { theme } = StyleSheet;
 
   return (
@@ -47,12 +57,14 @@ export const Tabs = ({
         onPress={() => handleAnimationType('spring')}
         title="Spring"
         active={active === 'spring'}
+        // @ts-expect-error
         Icon={Spring}
       />
       <Chip
         onPress={() => handleAnimationType('timing')}
         title="Timing"
         active={active === 'timing'}
+        // @ts-expect-error
         Icon={Timing}
       />
     </View>
@@ -70,7 +82,6 @@ const s = StyleSheet.create((theme) => ({
   },
   headBox: {
     flex: 1,
-    // backgroundColor: 'red',
     textAlign: 'center',
     paddingVertical: 10,
     marginHorizontal: 3,
@@ -80,7 +91,6 @@ const s = StyleSheet.create((theme) => ({
     textAlign: 'center',
   },
   chipContainer: {
-    // borderWidth: 1,
     borderColor: theme.primary,
     marginRight: 15,
     borderRadius: 100,

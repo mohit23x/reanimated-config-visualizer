@@ -8,9 +8,11 @@ import {
   AnimationTypes,
   ConfigType,
   DEFAULT_MAX_LIMIT,
+  SpringConfigType,
   SpringLimitType,
   StateType,
   Step,
+  TimingConfigType,
 } from 'src/constants';
 import { Tabs } from './Tabs';
 import { WithTiming } from './WithTiming';
@@ -88,7 +90,7 @@ export const InputSection = ({
       {state.animationType === 'timing' && (
         <WithTiming
           handleChange={handleChange}
-          config={state.config}
+          config={state.config as TimingConfigType}
           onPlay={onPlay}
           handleSetting={toggleModal}
         />
@@ -96,7 +98,7 @@ export const InputSection = ({
 
       {state.animationType === 'spring' && (
         <WithSprings
-          config={state.config}
+          config={state.config as SpringConfigType}
           limit={LIMIT}
           step={Step}
           handleChange={handleChange}

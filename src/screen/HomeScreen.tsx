@@ -39,7 +39,9 @@ const reducer = (state: StateType, action: ActionTypes) => {
 
 export const HomeScreen = () => {
   const x = useSharedValue(0);
-  const [state, dispatch] = useReducer(reducer, DefaultState);
+  const [state, dispatch] = useReducer<
+    (state: StateType, actions: ActionTypes) => StateType
+  >(reducer, DefaultState);
   useTheme();
 
   const handleChange = (payload: Partial<ConfigType>) => {
@@ -58,8 +60,10 @@ export const HomeScreen = () => {
   const onPlay = () => {
     cancelAnimation(x);
     if (state.animationType === 'timing') {
+      // @ts-expect-error
       x.value = withTiming(x.value === 0 ? 1 : 0, state.config);
     } else {
+      // @ts-expect-error
       x.value = withSpring(x.value === 0 ? 1 : 0, state.config);
     }
   };

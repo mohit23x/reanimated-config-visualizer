@@ -1,12 +1,12 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Text,
   TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
-} from "react-native";
-import { StyleSheet } from "src/styles";
+} from 'react-native';
+import { StyleSheet } from 'src/styles';
 
 type Props = {
   style?: ViewStyle;
@@ -43,20 +43,22 @@ export const Button = ({
   );
 };
 
-const s = StyleSheet.create((theme) => ({
+const s = StyleSheet.create((theme, constants) => ({
   container: {
     flex: 1,
-    flexDirection: ["column-reverse", "row"],
+    flexDirection: ['column-reverse', 'row'],
     backgroundColor: theme.background,
     paddingHorizontal: [undefined, undefined, 100],
+    width: constants.screenWidth,
+    overflow: 'hidden',
   },
   section: {
     flex: 1,
-    marginVertical: [undefined, undefined, "5%"],
+    marginVertical: [undefined, undefined, '5%'],
   },
   divider: {
     height: 1,
-    width: "100%",
+    width: '100%',
     backgroundColor: theme.border,
     marginBottom: 5,
     opacity: theme.opacity.fade,
@@ -67,11 +69,11 @@ const s = StyleSheet.create((theme) => ({
     maxWidth: 200,
     minWidth: 100,
     borderRadius: theme.borderRadius.m,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: theme.secondary,
     marginHorizontal: 10,
-    alignSelf: "center",
+    alignSelf: 'center',
     marginVertical: 5,
   },
 }));

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Image, Modal, Switch, Text, ScrollView } from 'react-native';
+import { View, Modal, Switch, Text, ScrollView } from 'react-native';
 import { ConfigType, LimitType } from 'src/constants';
 import { darkTheme, lightTheme, StyleSheet } from 'src/styles';
 import { Attribution } from './Attribution';

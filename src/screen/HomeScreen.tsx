@@ -21,8 +21,9 @@ import {
 } from 'src/constants';
 import { useTheme } from 'src/styles';
 import type { ActionTypes } from 'src/types';
+import { Helmet } from 'react-helmet';
 
-const reducer = (state: StateType, action: ActionTypes) => {
+const reducer = (state: StateType, action: ActionTypes): StateType => {
   switch (action.type) {
     case 'SET_ANIMATION':
       return {
@@ -76,12 +77,21 @@ export const HomeScreen = () => {
 
   return (
     <>
+      {Platform.OS === 'web' ? (
+        <Helmet>
+          <title>Reanimated 2 Config Visualizer</title>
+          <meta
+            name="description"
+            content="Reanimated 2 Config Visualizer works on expo and web made by mohit23x"
+          />
+        </Helmet>
+      ) : null}
+
       <Container>
         <InputSection
           onPlay={onPlay}
           state={state}
           handleChange={handleChange}
-          stopAnimation={stopAnimation}
           handleAnimationType={handleAnimationType}
         />
         <OutputSection x={x} stopAnimation={stopAnimation} />

@@ -37,13 +37,11 @@ const reducer = (
 export const InputSection = ({
   onPlay,
   state,
-  stopAnimation,
   handleChange,
   handleAnimationType,
 }: {
   state: StateType;
   onPlay: () => void;
-  stopAnimation: () => void;
   handleChange: (a: Partial<ConfigType>) => void;
   handleAnimationType: (a: AnimationTypes) => void;
 }) => {

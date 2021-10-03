@@ -18,7 +18,9 @@ export const DEFAULT_MAX_LIMIT = {
   mass: 5,
   stiffness: 300,
   velocity: 100,
-};
+} as const;
+
+export type LimitType = typeof DEFAULT_MAX_LIMIT;
 
 export const Step = {
   damping: 0.5,

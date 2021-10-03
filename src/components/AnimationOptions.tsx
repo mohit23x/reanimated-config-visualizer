@@ -1,6 +1,6 @@
 import { P } from '@expo/html-elements';
 import * as React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { ExampleKeyType } from 'src/constants';
 import { StyleSheet } from 'src/styles';
 

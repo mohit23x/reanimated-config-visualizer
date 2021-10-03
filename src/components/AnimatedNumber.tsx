@@ -51,7 +51,7 @@ export const AnimatedNumber = ({ x }: Props) => {
   return <NativeText x={x} />;
 };
 
-const s = StyleSheet.create((theme, constants) => ({
+const s = StyleSheet.create((theme) => ({
   text: {
     color: theme.text,
     textAlign: 'right',

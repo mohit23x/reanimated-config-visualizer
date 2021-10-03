@@ -37,13 +37,11 @@ const reducer = (
 export const InputSection = ({
   onPlay,
   state,
-  stopAnimation,
   handleChange,
   handleAnimationType,
 }: {
   state: StateType;
   onPlay: () => void;
-  stopAnimation: () => void;
   handleChange: (a: Partial<ConfigType>) => void;
   handleAnimationType: (a: AnimationTypes) => void;
 }) => {
@@ -98,8 +96,7 @@ export const InputSection = ({
 
       {state.animationType === 'spring' && (
         <WithSprings
-          config={state.config as 
-                 }
+          config={state.config as SpringConfigType}
           limit={LIMIT}
           step={Step}
           handleChange={handleChange}

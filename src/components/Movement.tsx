@@ -18,7 +18,7 @@ export const Movement = ({ x, backgroundColor }: AnimationCompProps) => {
   );
 };
 
-const s = StyleSheet.create((theme, constants) => ({
+const s = StyleSheet.create((theme) => ({
   box: {
     height: [100, 150],
     width: [120, 200],

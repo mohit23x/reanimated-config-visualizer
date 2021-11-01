@@ -35,7 +35,7 @@
     "@types/react-dom": "~17.0.8",
     "@types/react-native": "~0.64.12",
     "gh-pages": "^3.2.2",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.4"
   },
   "homepage": "http://mohit23x.github.io/reanimated-config-visualizer",
   "private": true

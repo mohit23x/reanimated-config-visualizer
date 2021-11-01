@@ -5433,10 +5433,10 @@ react-native-easing@^1.0.1:
   resolved "https://registry.yarnpkg.com/react-native-easing/-/react-native-easing-1.0.1.tgz#434b555f7e61969211d60f052f08041d2088e71d"
   integrity sha512-uMjTS+aTILnZpd5Cf1k0aSnO1alXiKuxhl/BfE04BkuDvcJIqn4A05gRvbhLJeNCADh6wSmVGaCAY6J/sXQsgQ==
 
-react-native-reanimated@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.0.tgz#a6412c56b4e591d1f00fac949f62d0c72c357c78"
-  integrity sha512-lOJDd+5w1gY6DHGXG2jD1dsjzQmXQ2699HUc3IztvI2WP4zUT+UAA+zSG+5JiBS5DUnTL8YhhkmUQmr1KNGO5w==
+react-native-reanimated@2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.3.tgz#edecfe477ad9efac6f006f7e1194e8c9aa4fc6d5"
+  integrity sha512-d+BV39Jp4Om0ZkgVjop672/004ytlTfDT01EloO3HFZs9wR2QTuCjekq8yi3xl0G2xGZKd4DXhvqabIa7OnMYA==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.10.4"
     fbjs "^3.0.0"

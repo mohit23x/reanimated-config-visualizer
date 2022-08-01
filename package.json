@@ -27,7 +27,7 @@
     "react-native-redash": "^16.1.1",
     "react-native-sugar-style": "^0.1.22",
     "react-native-svg": "^12.1.1",
-    "react-native-web": "^0.17.1"
+    "react-native-web": "^0.18.7"
   },
   "devDependencies": {
     "@babel/core": "~7.14.3",

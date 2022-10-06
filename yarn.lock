@@ -1752,10 +1752,10 @@
     tmp "^0.0.33"
     tslib "^1.10.0"
 
-"@expo/html-elements@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.0.2.tgz#9e913ab860ebf676cecf200385d126649c7c4496"
-  integrity sha512-sB5mrrL0GKew9EMCBwS12zlBjF4hswqpP42T/bacgxadF8CKWGLru4KLrAi2cmBAkUOC1Z/HGmlVWEOi7Gl+OA==
+"@expo/html-elements@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.2.0.tgz#dcf1df1c5350289ffb3934809582b2a85651e507"
+  integrity sha512-bdkOwWXX7E4ha8rKZDSYRtW/XhDlO7mj+8YzKOywxOjGsJqZ5N0HZireHH8sQxq7krdFnpXADL5c/0HX3gIesA==
 
 "@expo/image-utils@0.3.20":
   version "0.3.20"
@@ -2390,7 +2390,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^17.0.38":
+"@types/react@*":
   version "17.0.50"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.50.tgz#39abb4f7098f546cfcd6b51207c90c4295ee81fc"
   integrity sha512-ZCBHzpDb5skMnc1zFXAXnL3l1FAdi+xZvwxK+PkglMmBrwjpp9nKaWuEvrGnSifCJmBFGxZOOFuwC6KH/s0NuA==

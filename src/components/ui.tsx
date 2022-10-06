@@ -49,7 +49,7 @@ const s = StyleSheet.create((theme, constants) => ({
     flexDirection: ['column-reverse', 'row'],
     backgroundColor: theme.background,
     paddingHorizontal: [undefined, undefined, 100],
-    width: constants.screenWidth,
+    width: constants.width,
     overflow: 'hidden',
   },
   section: {

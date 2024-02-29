@@ -63,19 +63,16 @@ export const HomeScreen = () => {
     cancelAnimation(x);
     setRunning(true)
     const onFinish =  (finished: any) => {
-      console.log('test animation finished set running false', finished);
       setRunning(false)
     }
-    setTimeout(() => {
-      if (state.animationType === 'timing') {
-        // @ts-expect-error
-        x.value = withTiming(x.value === 0 ? 1 : 0, state.config, finished => runOnJS(onFinish)(finished))
-      }
-      else {
-        // @ts-expect-error
-        x.value = withSpring(x.value === 0 ? 1 : 0, state.config, finished => runOnJS(onFinish)(finished));
-      }
-    }, 16)
+    if (state.animationType === 'timing') {
+      // @ts-expect-error
+      x.value = withTiming(x.value === 0 ? 1 : 0, state.config, finished => runOnJS(onFinish)(finished))
+    }
+    else {
+      // @ts-expect-error
+      x.value = withSpring(x.value === 0 ? 1 : 0, state.config, finished => runOnJS(onFinish)(finished));
+    }
   };
 
   useEffect(() => {

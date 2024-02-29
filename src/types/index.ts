@@ -19,4 +19,5 @@ export type ActionTypes = SetConfigType | SetAnimationType;
 export type AnimationCompProps = {
   x: Animated.SharedValue<number>;
   backgroundColor: string;
+  running: boolean
 };

@@ -19,9 +19,11 @@ export const options = Object.keys(examples).map((d) => {
 export const OutputSection = ({
   x,
   stopAnimation,
+  running
 }: {
   x: Animated.SharedValue<number>;
   stopAnimation: () => void;
+  running: boolean
 }) => {
   const [active, setActive] = React.useState<ExampleKeyType>('rotate');
 
@@ -39,7 +41,7 @@ export const OutputSection = ({
       </View>
       <View style={s.container}>
         <View style={s.playground}>
-          <AnimationComp x={x} backgroundColor={examples[active].color} />
+          <AnimationComp running={running} x={x} backgroundColor={examples[active].color} />
         </View>
         <AnimationOptions
           active={active}

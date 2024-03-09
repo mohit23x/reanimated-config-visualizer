@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { Platform } from 'react-native';
 import {
-  cancelAnimation,
+  cancelAnimation, runOnJS,
   useSharedValue,
   withSpring,
-  withTiming,
+  withTiming
 } from 'react-native-reanimated';
 import { InputSection } from 'src/components/InputSection';
 import { OutputSection } from 'src/components/OutputSection';
@@ -40,6 +40,7 @@ const reducer = (state: StateType, action: ActionTypes): StateType => {
 
 export const HomeScreen = () => {
   const x = useSharedValue(0);
+  const [running, setRunning] = useState(false)
   const [state, dispatch] = useReducer<
     (state: StateType, actions: ActionTypes) => StateType
   >(reducer, DefaultState);
@@ -60,12 +61,17 @@ export const HomeScreen = () => {
 
   const onPlay = () => {
     cancelAnimation(x);
+    setRunning(true)
+    const onFinish =  (finished: any) => {
+      setRunning(false)
+    }
     if (state.animationType === 'timing') {
       // @ts-expect-error
-      x.value = withTiming(x.value === 0 ? 1 : 0, state.config);
-    } else {
+      x.value = withTiming(x.value === 0 ? 1 : 0, state.config, finished => runOnJS(onFinish)(finished))
+    }
+    else {
       // @ts-expect-error
-      x.value = withSpring(x.value === 0 ? 1 : 0, state.config);
+      x.value = withSpring(x.value === 0 ? 1 : 0, state.config, finished => runOnJS(onFinish)(finished));
     }
   };
 
@@ -94,7 +100,7 @@ export const HomeScreen = () => {
           handleChange={handleChange}
           handleAnimationType={handleAnimationType}
         />
-        <OutputSection x={x} stopAnimation={stopAnimation} />
+        <OutputSection x={x} stopAnimation={stopAnimation} running={running} />
       </Container>
     </>
   );

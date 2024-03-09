@@ -2,7 +2,9 @@ import { Easing } from 'react-native-reanimated';
 import MoveIcon from 'src/assets/Move';
 import RotateIcon from 'src/assets/Rotate';
 import ScaleIcon from 'src/assets/Scale';
+import ChartIcon from 'src/assets/Chart';
 import { Movement, Rotate, Scale } from 'src/components';
+import { Chart } from '../components/Chart';
 
 // ============= spring config =============
 
@@ -80,6 +82,12 @@ export const examples = {
     component: Movement,
     icon: MoveIcon,
     color: '#f368e0',
+  },
+  chart: {
+    title: 'Chart',
+    component: Chart,
+    icon: ChartIcon,
+    color: '#000',
   },
 };
 
